@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="CLIWizardHelper">
+      <HintPath>..\..\build\Build\cli-wizard-helper\CLIWizardHelper\CLIWizardHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Log.Data">
+      <HintPath>..\..\build\Build\log-data\Log.Data\Log.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="CLIHelper">
+      <HintPath>..\..\build\Build\cli-helper\CLIHelper\CLIHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="CLIReader">
+      <HintPath>..\..\build\Build\cli-reader\CLIReader\CLIReader.dll</HintPath>
+    </Reference>
+    <Reference Include="EFCoreHelper">
+      <HintPath>..\..\build\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
