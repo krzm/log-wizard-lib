@@ -1,22 +1,23 @@
-using CLIHelper;
 using CLIReader;
 using CLIWizardHelper;
 using Log.Data;
+using Serilog;
+using Task = Log.Data.Task;
 
 namespace Log.Wizard.Lib;
 
 public class TaskUpdateWizard 
-    : UpdateWizard<ILogUnitOfWork, Data.Task>
+    : UpdateWizard<ILogUnitOfWork, Task>
 {
-    const string name = nameof(Data.Task.Name);
-    const string desc = nameof(Data.Task.Description);
-    const string id = nameof(Data.Task.CategoryId);
+    const string name = nameof(Task.Name);
+    const string desc = nameof(Task.Description);
+    const string id = nameof(Task.CategoryId);
 
     public TaskUpdateWizard(
         ILogUnitOfWork unitOfWork
         , IReader<string> requiredTextReader
-        , IOutput output) 
-            : base(unitOfWork, requiredTextReader, output)
+        , ILogger log) 
+            : base(unitOfWork, requiredTextReader, log)
     {
     }
 
@@ -25,12 +26,12 @@ public class TaskUpdateWizard
         return $"Select property number. 1-{name}, 2-{desc}, 3-{id}.";
     }
 
-    protected override Data.Task GetById(int id)
+    protected override Task GetById(int id)
     {
         return UnitOfWork.Task.GetByID(id);
     }
 
-    protected override void UpdateEntity(int nr, Data.Task model)
+    protected override void UpdateEntity(int nr, Task model)
     {
         switch (nr)
         {
@@ -43,8 +44,10 @@ public class TaskUpdateWizard
                     new ReadConfig(70, desc));
                 break;
             case 3:
-                model.CategoryId = int.Parse(RequiredTextReader.Read(
-                    new ReadConfig(6, id)));
+                var categoryId = RequiredTextReader.Read(
+                    new ReadConfig(6, id));
+                ArgumentNullException.ThrowIfNull(categoryId);
+                model.CategoryId = int.Parse(categoryId);
                 break;
         }
     }

@@ -1,7 +1,7 @@
-using CLIHelper;
 using CLIReader;
 using CLIWizardHelper;
 using Log.Data;
+using Serilog;
 
 namespace Log.Wizard.Lib;
 
@@ -18,10 +18,10 @@ public class LogInsertWizard
         ILogUnitOfWork unitOfWork
         , IReader<string> requiredTextReader
         , IReader<string> optionalTextReader
-        , IOutput output
+        , ILogger log
         , IReader<DateTime> requiredDateTimeReader
         , IReader<DateTime?> optionalDateTimeReader) 
-            : base(unitOfWork, requiredTextReader, output)
+            : base(unitOfWork, requiredTextReader, log)
     {
         this.requiredTextReader = requiredTextReader;
         this.optionalTextReader = optionalTextReader;
@@ -36,16 +36,26 @@ public class LogInsertWizard
 
     protected override LogModel GetEntity()
     {
+        var taskId = requiredTextReader.Read(
+            new ReadConfig(
+                6
+                , nameof(LogModel.TaskId)));
+        ArgumentNullException.ThrowIfNull(taskId);
+        var placeId = requiredTextReader.Read(
+            new ReadConfig(
+                6
+                , nameof(LogModel.PlaceId)
+                , ""
+                , "1"));
+        ArgumentNullException.ThrowIfNull(placeId);
         return new LogModel
         {
-            TaskId = int.Parse(requiredTextReader.Read(
-                new ReadConfig(6, nameof(LogModel.TaskId))))
+            TaskId = int.Parse(taskId)
             , Start = requiredDateTimeReader.Read(
                 new ReadConfig(16, nameof(LogModel.Start), Format, DateTime.Now.ToString(Format)))
             , Description = optionalTextReader.Read(
                 new ReadConfig(70, nameof(LogModel.Description)))
-            , PlaceId = int.Parse(requiredTextReader.Read(
-                new ReadConfig(6, nameof(LogModel.PlaceId), "", "1")))
+            , PlaceId = int.Parse(placeId)
             , End = optionalDateTimeReader.Read(
                 new ReadConfig(16, nameof(LogModel.End), Format))
         };

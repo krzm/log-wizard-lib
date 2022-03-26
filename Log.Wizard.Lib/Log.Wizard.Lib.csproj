@@ -7,11 +7,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+		<PackageReference Include="Serilog" Version="2.10.0" />
+	</ItemGroup>
+
+  <!-- Debug References -->
+	<!-- <ItemGroup>
+    <Reference Include="EFCoreHelper">
+			<HintPath>..\..\efcore-helper\EFCoreHelper\bin\Debug\net6.0\EFCoreHelper.dll</HintPath>
+		</Reference>
+    <Reference Include="CLIHelper">
+			<HintPath>..\..\cli-helper\CLIHelper\bin\Debug\net6.0\CLIHelper.dll</HintPath>
+		</Reference>
+		<Reference Include="CLIReader">	
+			<HintPath>..\..\cli-reader\CLIReader\bin\Debug\net6.0\CLIReader.dll</HintPath>
+		</Reference>
     <Reference Include="CLIWizardHelper">
-      <HintPath>..\..\..\Build\cli-wizard-helper\CLIWizardHelper\CLIWizardHelper.dll</HintPath>
-    </Reference>
+			<HintPath>..\..\cli-wizard-helper\CLIWizardHelper\bin\Debug\net6.0\CLIWizardHelper.dll</HintPath>
+		</Reference>
     <Reference Include="Log.Data">
-      <HintPath>..\..\..\Build\log-data\Log.Data\Log.Data.dll</HintPath>
+			<HintPath>..\..\log-data\Log.Data\bin\Debug\net6.0\Log.Data.dll</HintPath>
+		</Reference>
+	</ItemGroup> -->
+
+	<!-- Release References -->
+  <ItemGroup>
+    <Reference Include="EFCoreHelper">
+      <HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
     </Reference>
     <Reference Include="CLIHelper">
       <HintPath>..\..\..\Build\cli-helper\CLIHelper\CLIHelper.dll</HintPath>
@@ -19,8 +40,11 @@
     <Reference Include="CLIReader">
       <HintPath>..\..\..\Build\cli-reader\CLIReader\CLIReader.dll</HintPath>
     </Reference>
-    <Reference Include="EFCoreHelper">
-      <HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
+    <Reference Include="CLIWizardHelper">
+      <HintPath>..\..\..\Build\cli-wizard-helper\CLIWizardHelper\CLIWizardHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Log.Data">
+      <HintPath>..\..\..\Build\log-data\Log.Data\Log.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

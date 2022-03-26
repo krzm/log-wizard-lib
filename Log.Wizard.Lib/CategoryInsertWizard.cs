@@ -1,33 +1,33 @@
-using CLIHelper;
 using CLIReader;
 using CLIWizardHelper;
 using Log.Data;
+using Serilog;
 
 namespace Log.Wizard.Lib;
 
 public class CategoryInsertWizard 
-    : InsertWizard<ILogUnitOfWork, Data.Category>
+    : InsertWizard<ILogUnitOfWork, Category>
 {
     public CategoryInsertWizard(
         ILogUnitOfWork unitOfWork
         , IReader<string> requiredTextReader
-        , IOutput output) 
-            : base(unitOfWork, requiredTextReader, output)
+        , ILogger log) 
+            : base(unitOfWork, requiredTextReader, log)
     {
     }
 
-    protected override Data.Category GetEntity()
+    protected override Category GetEntity()
     {
-        return new Data.Category()
+        return new Category()
         {
             Name = RequiredTextReader.Read(
-                new ReadConfig(25, nameof(Data.Category.Name)))
+                new ReadConfig(25, nameof(Category.Name)))
             ,
             Description = RequiredTextReader.Read(
-                new ReadConfig(70, nameof(Data.Category.Description)))
+                new ReadConfig(70, nameof(Category.Description)))
         };
     }
 
-    protected override void InsertEntity(Data.Category entity) =>
+    protected override void InsertEntity(Category entity) =>
         UnitOfWork.Category.Insert(entity);
 }

@@ -1,32 +1,32 @@
-using CLIHelper;
 using CLIReader;
 using CLIWizardHelper;
 using Log.Data;
+using Serilog;
 
 namespace Log.Wizard.Lib;
 public class PlaceInsertWizard 
-    : InsertWizard<ILogUnitOfWork, Data.Place>
+    : InsertWizard<ILogUnitOfWork, Place>
 {
     public PlaceInsertWizard(
         ILogUnitOfWork unitOfWork
         , IReader<string> requiredTextReader
-        , IOutput output) 
-            : base(unitOfWork, requiredTextReader, output)
+        , ILogger log) 
+            : base(unitOfWork, requiredTextReader, log)
     {
     }
 
-    protected override Data.Place GetEntity()
+    protected override Place GetEntity()
     {
-        return new Data.Place()
+        return new Place()
         {
             Name = RequiredTextReader.Read(
-                new ReadConfig(25, nameof(Data.Place.Name)))
+                new ReadConfig(25, nameof(Place.Name)))
             ,
             Description = RequiredTextReader.Read(
-                new ReadConfig(70, nameof(Data.Place.Description)))
+                new ReadConfig(70, nameof(Place.Description)))
         };
     }
 
-    protected override void InsertEntity(Data.Place entity) =>
+    protected override void InsertEntity(Place entity) =>
         UnitOfWork.Place.Insert(entity);
 }

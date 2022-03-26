@@ -1,7 +1,7 @@
-﻿using CLIHelper;
-using CLIReader;
+﻿using CLIReader;
 using CLIWizardHelper;
 using Log.Data;
+using Serilog;
 
 namespace Log.Wizard.Lib;
 
@@ -20,11 +20,11 @@ public class LogUpdateWizard
     public LogUpdateWizard(
         ILogUnitOfWork unitOfWork
         , IReader<string> requiredTextReader
-        , IOutput output
+        , ILogger log
         , IReader<string> optionalTextReader
         , IReader<DateTime> requiredDateTimeReader
         , IReader<DateTime?> optionalDateTimeReader) 
-            : base(unitOfWork, requiredTextReader, output)
+            : base(unitOfWork, requiredTextReader, log)
     {
         ArgumentNullException.ThrowIfNull(optionalTextReader);
         ArgumentNullException.ThrowIfNull(requiredDateTimeReader);
@@ -53,7 +53,9 @@ public class LogUpdateWizard
                 model.Description = optionalTextReader.Read(new ReadConfig(70, desc));
                 break;
             case 2:
-                model.TaskId = int.Parse(RequiredTextReader.Read(new ReadConfig(6, id)));
+                var taskId = RequiredTextReader.Read(new ReadConfig(6, id));
+                ArgumentNullException.ThrowIfNull(taskId);
+                model.TaskId = int.Parse(taskId);
                 break;
             case 3:
                 model.Start = requiredDateTimeReader.Read(

@@ -1,39 +1,42 @@
-using CLIHelper;
 using CLIReader;
 using CLIWizardHelper;
 using Log.Data;
+using Serilog;
+using Task = Log.Data.Task;
 
 namespace Log.Wizard.Lib;
 
 public class TaskInsertWizard 
-    : InsertWizard<ILogUnitOfWork, Data.Task>
+    : InsertWizard<ILogUnitOfWork, Task>
 {
     public TaskInsertWizard(
         ILogUnitOfWork unitOfWork
         , IReader<string> requiredTextReader
-        , IOutput output) 
-        : base(unitOfWork, requiredTextReader, output)
+        , ILogger log) 
+        : base(unitOfWork, requiredTextReader, log)
     {
     }
 
-    protected override Data.Task GetEntity()
+    protected override Task GetEntity()
     {
-        return new Data.Task
+        var categoryId = RequiredTextReader.Read(
+            new ReadConfig(
+                6
+                , nameof(Task.CategoryId)));
+        ArgumentNullException.ThrowIfNull(categoryId);
+        return new Task
         {
             Name = RequiredTextReader.Read(
-                new ReadConfig(25, nameof(Data.Task.Name)))
+                new ReadConfig(25, nameof(Task.Name)))
             ,
             Description = RequiredTextReader.Read(
-                new ReadConfig(70, nameof(Data.Task.Description))
-            )
+                new ReadConfig(70, nameof(Task.Description)))
             ,
-            CategoryId = int.Parse(
-                RequiredTextReader.Read(
-                    new ReadConfig(6, nameof(Data.Task.CategoryId))))
+            CategoryId = int.Parse(categoryId)
         };
     }
 
-    protected override void InsertEntity(Data.Task model)
+    protected override void InsertEntity(Task model)
     {
         UnitOfWork.Task.Insert(model);
     }
