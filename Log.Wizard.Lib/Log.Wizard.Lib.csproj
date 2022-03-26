@@ -15,9 +15,6 @@
     <Reference Include="EFCoreHelper">
 			<HintPath>..\..\efcore-helper\EFCoreHelper\bin\Debug\net6.0\EFCoreHelper.dll</HintPath>
 		</Reference>
-    <Reference Include="CLIHelper">
-			<HintPath>..\..\cli-helper\CLIHelper\bin\Debug\net6.0\CLIHelper.dll</HintPath>
-		</Reference>
 		<Reference Include="CLIReader">	
 			<HintPath>..\..\cli-reader\CLIReader\bin\Debug\net6.0\CLIReader.dll</HintPath>
 		</Reference>
@@ -33,9 +30,6 @@
   <ItemGroup>
     <Reference Include="EFCoreHelper">
       <HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="CLIHelper">
-      <HintPath>..\..\..\Build\cli-helper\CLIHelper\CLIHelper.dll</HintPath>
     </Reference>
     <Reference Include="CLIReader">
       <HintPath>..\..\..\Build\cli-reader\CLIReader\CLIReader.dll</HintPath>
