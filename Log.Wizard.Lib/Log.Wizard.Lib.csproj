@@ -1,44 +1,44 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-		<PackageReference Include="Serilog" Version="2.10.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Serilog" Version="2.10.0" />
+    </ItemGroup>
 
-  <!--Debug refs-->
+    <!--Debug refs-->
 	<!-- <ItemGroup>
-    <Reference Include="EFCoreHelper">
-			<HintPath>..\..\efcore-helper\EFCoreHelper\bin\Debug\net6.0\EFCoreHelper.dll</HintPath>
+        <Reference Include="EFCore.Helper">
+			<HintPath>..\..\efcore-helper\EFCore.Helper\bin\Debug\net6.0\EFCore.Helper.dll</HintPath>
 		</Reference>
 		<Reference Include="CLIReader">	
 			<HintPath>..\..\cli-reader\CLIReader\bin\Debug\net6.0\CLIReader.dll</HintPath>
 		</Reference>
-    <Reference Include="CLIWizardHelper">
+        <Reference Include="CLIWizardHelper">
 			<HintPath>..\..\cli-wizard-helper\CLIWizardHelper\bin\Debug\net6.0\CLIWizardHelper.dll</HintPath>
 		</Reference>
-    <Reference Include="Log.Data">
+        <Reference Include="Log.Data">
 			<HintPath>..\..\log-data\Log.Data\bin\Debug\net6.0\Log.Data.dll</HintPath>
 		</Reference>
 	</ItemGroup> -->
 
 	<!--Release refs-->
-  <ItemGroup>
-    <Reference Include="EFCoreHelper">
-      <HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="CLIReader">
-      <HintPath>..\..\..\Build\cli-reader\CLIReader\CLIReader.dll</HintPath>
-    </Reference>
-    <Reference Include="CLIWizardHelper">
-      <HintPath>..\..\..\Build\cli-wizard-helper\CLIWizardHelper\CLIWizardHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="Log.Data">
-      <HintPath>..\..\..\Build\log-data\Log.Data\Log.Data.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+    <ItemGroup>
+        <Reference Include="EFCore.Helper">
+            <HintPath>..\..\..\Build\efcore-helper\EFCore.Helper\EFCore.Helper.dll</HintPath>
+        </Reference>
+        <Reference Include="CLIReader">
+            <HintPath>..\..\..\Build\cli-reader\CLIReader\CLIReader.dll</HintPath>
+        </Reference>
+        <Reference Include="CLIWizardHelper">
+            <HintPath>..\..\..\Build\cli-wizard-helper\CLIWizardHelper\CLIWizardHelper.dll</HintPath>
+        </Reference>
+        <Reference Include="Log.Data">
+            <HintPath>..\..\..\Build\log-data\Log.Data\Log.Data.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 </Project>
