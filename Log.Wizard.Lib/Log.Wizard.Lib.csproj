@@ -1,16 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Serilog" Version="2.10.0" />
-    </ItemGroup>
-
-    <!--Debug refs-->
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Serilog" Version="2.11.0"/>
+	</ItemGroup>
+	<!--Debug refs-->
 	<!-- <ItemGroup>
         <Reference Include="EFCore.Helper">
 			<HintPath>..\..\efcore-helper\EFCore.Helper\bin\Debug\net6.0\EFCore.Helper.dll</HintPath>
@@ -25,20 +22,19 @@
 			<HintPath>..\..\log-data\Log.Data\bin\Debug\net6.0\Log.Data.dll</HintPath>
 		</Reference>
 	</ItemGroup> -->
-
 	<!--Release refs-->
-    <ItemGroup>
-        <Reference Include="EFCore.Helper">
-            <HintPath>..\..\..\Build\efcore-helper\EFCore.Helper\EFCore.Helper.dll</HintPath>
-        </Reference>
-        <Reference Include="CLIReader">
-            <HintPath>..\..\..\Build\cli-reader\CLIReader\CLIReader.dll</HintPath>
-        </Reference>
-        <Reference Include="CLIWizardHelper">
-            <HintPath>..\..\..\Build\cli-wizard-helper\CLIWizardHelper\CLIWizardHelper.dll</HintPath>
-        </Reference>
-        <Reference Include="Log.Data">
-            <HintPath>..\..\..\Build\log-data\Log.Data\Log.Data.dll</HintPath>
-        </Reference>
-    </ItemGroup>
+	<ItemGroup>
+		<Reference Include="EFCore.Helper">
+			<HintPath>..\..\..\Build\efcore-helper\EFCore.Helper\EFCore.Helper.dll</HintPath>
+		</Reference>
+		<Reference Include="CLIReader">
+			<HintPath>..\..\..\Build\cli-reader\CLIReader\CLIReader.dll</HintPath>
+		</Reference>
+		<Reference Include="CLIWizardHelper">
+			<HintPath>..\..\..\Build\cli-wizard-helper\CLIWizardHelper\CLIWizardHelper.dll</HintPath>
+		</Reference>
+		<Reference Include="Log.Data">
+			<HintPath>..\..\..\Build\log-data\Log.Data\Log.Data.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 </Project>
